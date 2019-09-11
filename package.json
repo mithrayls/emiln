@@ -1,0 +1,27 @@
+{
+    "name": "emiln",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "bin": {
+        "cligen": "./bin/index.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "mithrayls <mithray@protonmail.com> (https://mithrayls.github.io/)",
+    "license": "MIT",
+    "dependencies": {
+        "@hapi/hapi": "^18.3.2",
+        "@hapi/joi": "^15.1.1",
+        "change-case": "^3.1.0",
+        "chokidar": "^3.0.2",
+        "commander": "^3.0.1",
+        "node-fetch": "^2.6.0",
+        "query-string": "^6.8.3",
+        "read-pkg-up": "^6.0.0",
+        "yaml": "^1.6.0",
+        "yargs-parser": "^14.0.0"
+    }
+}
