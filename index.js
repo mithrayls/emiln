@@ -1,5 +1,48 @@
-const server = require('./lib/server.js')
+'use strict'
+const testFunction = require('./lib/testFunction.js')
+const fetch = require('node-fetch')
+const Hapi = require('@hapi/hapi')
+const queryEncode = require('./lib/queryEncode.js')
+const yargs = require('yargs-parser')
 
-module.exports = {
-    server
+let domain = 'localhost'
+let protocol = 'http'
+let delimiter = '://'
+let port = '3001'
+
+async function emiln(routes, argv) {
+    const args = yargs(process.argv.slice(2))
+    const server = Hapi.server({
+        port: port,
+        host: domain
+    })
+
+    for (let route of routes) {
+        server.route(route)
+    }
+    process.on('unhandledRejection', err => {
+        console.log(err)
+        process.exit(1)
+    })
+
+    await server.start()
+
+    const queryString = queryEncode(args)
+    const url = protocol + delimiter + domain + ':' + port + queryString
+
+    console.log(url)
+    /*
+    server.ext('onPreResponse', function(request, h) {
+        process.exit(1)
+        return h.continue
+    })
+     */
+    let res = await fetch(url).then(async res => {
+        let response = await res.text()
+        return response
+    })
+
+    return res
 }
+
+module.exports = emiln

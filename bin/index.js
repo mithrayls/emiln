@@ -1,15 +1,8 @@
 #!/usr/bin/env node
-
 const emiln = require('../index.js')
+const commands = require('../spec/routes.js')
 
-const commands = [
-    {
-        spec_path: './api.yml',
-        exec_path: './lib',
-        subcommand: ''
-    }
-]
-
-emiln(commands).then(program => {
-    program.parse(process.argv)
+emiln(commands, process.argv).then(async res => {
+    console.log(await res)
+    process.exit(1)
 })
