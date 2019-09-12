@@ -25,7 +25,7 @@
 -   [mocha][]
 -   [should][]
 
-Bottom text.
+Bottom text here.
 
 [hapi]: https://hapi.dev/ 'hapi: Web and services application framework'
 [joi]: https://github.com/hapijs/joi 'joi: Schema description language and data validator for JavaScript'
@@ -99,6 +99,3 @@ testFunc:
           default:
 ```
 -->
-# emiln
-# emilyn
-# emiln
