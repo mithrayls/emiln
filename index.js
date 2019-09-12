@@ -11,6 +11,7 @@ let delimiter = '://'
 let port = '3001'
 
 async function emiln(routes, argv) {
+    //console.log(routes)
     const args = yargs(process.argv.slice(2))
     const server = Hapi.server({
         port: port,
