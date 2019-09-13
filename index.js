@@ -2,11 +2,11 @@
 const testFunction = require('./lib/testFunction.js')
 const fetch = require('node-fetch')
 const Hapi = require('@hapi/hapi')
+const HapiSwagger = require('hapi-swagger')
 const queryEncode = require('./lib/queryEncode.js')
 const yargs = require('yargs-parser')
 const Inert = require('@hapi/inert')
 const Vision = require('@hapi/vision')
-const HapiSwagger = require('hapi-swagger')
 
 let domain = 'localhost'
 let protocol = 'http'
