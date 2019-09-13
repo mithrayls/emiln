@@ -1,6 +1,6 @@
 {
     "name": "emiln",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "![emiln](https://raw.githubusercontent.com/mithrayls/emiln/master/emiln.svg?sanitize=true)",
     "main": "index.js",
     "bin": {
