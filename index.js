@@ -19,6 +19,7 @@ let port = '19271'
 
 async function emiln(routes, argv) {
     const args = yargs(process.argv.slice(2))
+    const queryString = queryEncode(args)
     const server = Hapi.server({
         port: port,
         host: domain
@@ -62,7 +63,6 @@ async function emiln(routes, argv) {
 */
     await server.start()
 
-    const queryString = queryEncode(args)
     const endpoint = protocol + delimiter + domain + ':' + port
     const uri = endpoint + queryString
 
