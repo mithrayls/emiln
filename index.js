@@ -1,4 +1,6 @@
+#!/usr/bin/env node
 'use strict'
+
 const fs = require('fs')
 const yargs = require('yargs-parser')
 const fetch = require('node-fetch')
@@ -25,14 +27,13 @@ async function emiln(routes, argv) {
     }
 
     console.log('Calling API: ' + uri)
+    console.log(routes[0].commit)
     let res = await puppi(uri)
+    console.log(res)
 
     if (args.interactive) {
         args.daemon = true
-        interactive({
-            routes: require('../../sempub/spec/git.js'),
-            endpoint: endpoint
-        })
+        interactive({ routes, endpoint })
     }
 
     if (!args.daemon) {
@@ -50,4 +51,4 @@ module.exports = { registerStorage }
 */
 let routes = require('../sempub/spec/git.js')
 
-emiln([routes], ['a', 'b', 'c', 'd'])
+emiln([routes])
