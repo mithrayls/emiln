@@ -19,6 +19,9 @@ let port = '19271'
 
 async function emiln(routes, argv) {
     const args = yargs(process.argv.slice(2))
+    if (args.daemon) {
+        console.log('daemon detected')
+    }
     const queryString = queryEncode(args)
     const server = Hapi.server({
         port: port,
@@ -44,6 +47,13 @@ async function emiln(routes, argv) {
         console.log(err)
         process.exit(1)
     })
+    await server.start()
+    const endpoint = protocol + delimiter + domain + ':' + port
+    const uri = endpoint + queryString
+
+    if (args.daemon) {
+        console.log('server listening on ' + endpoint)
+    }
     /*
     const swaggerOptions = {
         info: {
@@ -60,11 +70,7 @@ async function emiln(routes, argv) {
             plugin: HapiSwagger
         }
     ])
-*/
-    await server.start()
 
-    const endpoint = protocol + delimiter + domain + ':' + port
-    const uri = endpoint + queryString
 
     console.log('Fetching swagger.json: ' + endpoint + '/swagger.json')
     let swagger = await fetch(endpoint + '/swagger.json').then(async res => {
@@ -72,14 +78,18 @@ async function emiln(routes, argv) {
         fs.writeFileSync('./swagger.json', swagger_json)
         return swagger_json
     })
+*/
 
     console.log('Calling API: ' + uri)
     let res = await fetch(uri).then(async res => {
-        console.log('testing server')
         let response = await res.text()
         console.log(response)
         return response
     })
+
+    if (!args.daemon) {
+        server.stop({ timeout: 60 * 1000 })
+    }
 
     return res
 }
