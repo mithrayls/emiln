@@ -21,7 +21,9 @@ async function emiln(routes) {
     const endpoint = protocol + delimiter + domain + ':' + port
     const uri = endpoint + queryString
     const routes_data = _.cloneDeep(routes)
-    let server = await startServer({ routes, domain, port })
+    try {
+        let server = await startServer({ routes, domain, port })
+    } catch {}
     if (args.daemon) {
         console.log('Server listening on ' + endpoint)
     }
