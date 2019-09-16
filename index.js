@@ -21,25 +21,26 @@ async function emiln(routes) {
     const endpoint = protocol + delimiter + domain + ':' + port
     const uri = endpoint + queryString
     const routes_data = _.cloneDeep(routes)
+    let res
     try {
         let server = await startServer({ routes, domain, port })
+        if (args.daemon) {
+            console.log('Server listening on ' + endpoint)
+        }
+
+        //console.log('Calling API: ' + uri)
+        res = await puppi(uri)
+        //    console.log(res)
+
+        if (args.interactive) {
+            args.daemon = true
+            interactive({ routes_data, endpoint })
+        }
+
+        if (!args.daemon) {
+            server.stop({ timeout: 60 * 1000 })
+        }
     } catch {}
-    if (args.daemon) {
-        console.log('Server listening on ' + endpoint)
-    }
-
-    //console.log('Calling API: ' + uri)
-    let res = await puppi(uri)
-    //    console.log(res)
-
-    if (args.interactive) {
-        args.daemon = true
-        interactive({ routes_data, endpoint })
-    }
-
-    if (!args.daemon) {
-        server.stop({ timeout: 60 * 1000 })
-    }
     return res
 }
 
