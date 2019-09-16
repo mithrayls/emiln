@@ -24,6 +24,7 @@
         "conjugate": "^1.0.4",
         "en-inflectors": "^1.0.12",
         "hapi-swagger": "^10.1.1",
+        "inquirer-autocomplete-prompt": "^1.0.1",
         "jsdom": "^15.1.1",
         "lodash": "^4.17.15",
         "node-fetch": "^2.6.0",
