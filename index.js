@@ -26,20 +26,22 @@ let port = '19272'
 async function emiln(routes) {
     log.verbose('Starting emiln')
     /*
+    log.info(routes)
     log.info(JSON.stringify(routes))
     */
     const args = yargs(process.argv.slice(2))
     const path = '/' + args._.join('/')
-    const queryString = queryEncode(args)
+    const query = queryEncode(args)
     const endpoint = protocol + delimiter + domain + ':' + port
-    const uri = endpoint + queryString
-    log.verbose('Cloning route data')
-    const routes_data = _.cloneDeep(routes)
     log.verbose('Finding route')
-    const route = _.find(routes[0], function(o) {
+    let route_list = _.cloneDeep(routes)
+    route_list = Object.values(_.merge(...route_list))
+    const route = _.find(route_list, function(o) {
         return o.path === path
     })
+    log.info(`Route matching path *${path}*: **${route}**`)
     /*
+    console.log(route_list)
      */
 
     let res
@@ -52,7 +54,7 @@ async function emiln(routes) {
     }
     */
     log.verbose('Sending request')
-    res = await puppi(uri, route)
+    res = await puppi({ endpoint, path, query, route })
     log.verbose('Received Response')
 
     if (!args.daemon) {
