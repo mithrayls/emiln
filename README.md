@@ -25,7 +25,7 @@
 -   [mocha][]
 -   [should][]
 
-Bottom text here.
+Bottom text here. More Bottom Text.
 
 [hapi]: https://hapi.dev/ 'hapi: Web and services application framework'
 [joi]: https://github.com/hapijs/joi 'joi: Schema description language and data validator for JavaScript'
