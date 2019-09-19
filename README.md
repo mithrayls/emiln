@@ -98,6 +98,4 @@ testFunc:
           type:
           default:
 ```
-
-
 -->
