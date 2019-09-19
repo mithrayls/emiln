@@ -7,6 +7,7 @@ const fetch = require('node-fetch')
 const queryEncode = require('./lib/queryEncode.js')
 const puppi = require('./lib/puppi.js')
 const startServer = require('./lib/startServer.js')
+process.LOG_LEVEL = 4
 /*
 console.time('start puppi')
 console.timeEnd('start puppi')
