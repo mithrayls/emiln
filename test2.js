@@ -6,14 +6,19 @@ var questions = [
         type: 'input',
         name: 'first_name',
         message: "What's your first name",
+        /*
         validate: function(value) {
-            const schema = Joi.string().min(1)
+            const schema = Joi.string().min(3)
             const { error, val } = schema.validate(value)
             if (!error) {
                 return true
             }
             return error.details[0].message
         }
+        */
+        validate: Joi.string()
+            .min(2)
+            .validate(value)
     }
 ]
 

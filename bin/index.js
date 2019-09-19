@@ -1,9 +1,14 @@
 #!/usr/bin/env node
+/*
+ console.time('start')
+console.timeEnd('start')
+*/
 const emiln = require('../index.js')
-//const commands = require('../spec/routes.js')
-const commands = require('../../sempub/spec/main.js')
+const main = require('../../sempub/spec/main.js')
+const git = require('../../sempub/spec/git.js')
+//console.log(JSON.stringify(commands))
 
-emiln([commands], process.argv).then(async res => {
+emiln([main, git], process.argv).then(async res => {
+    console.log('Result:')
     console.log(await res)
-    //    process.exit(0)
 })
